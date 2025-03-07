@@ -5,7 +5,7 @@ function sumDigits(num) {
 
   for (let i = 0; i < numStr.length; i++) {
     if (i === 0 && numStr[i] === "-") {
-      sum -= Number(numStr[i + 1]);
+      sum -= Number(numStr[i + 1]); //-3
       i++;
     } else {
       sum += Number(numStr[i]);

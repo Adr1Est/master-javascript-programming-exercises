@@ -17,9 +17,32 @@ let currentInventory = [
   }
 ];
 
+function isValidArray(arr) {
+  return Array.isArray(arr) && arr.length != 0;
+}
+
 function getLaceNameDataForShoes(inventory) {
-    // your code here
-    
+  // your code here
+  let auxArr = [];
+  if (isValidArray(inventory)) {
+    inventory.map((e) => {
+      e.shoes.map((model) => {
+        let contador = 0;
+        let myWords = model.name.split(" ");
+        myWords.map((word) => {
+          if (word.startsWith("lace")) {
+            auxArr.push({
+              nameWords: myWords,
+              targetWordIndex: contador
+            });
+          } else {
+            contador++;
+          }
+        });
+      });
+    });
+  }
+  return auxArr;
 }
 
 console.log(getLaceNameDataForShoes(currentInventory));

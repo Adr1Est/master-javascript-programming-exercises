@@ -17,9 +17,37 @@ let currentInventory = [
   },
 ];
 
+function isValidArray(arr) {
+  return Array.isArray(arr) && arr.length != 0;
+}
+
 function renderAverageCostPerDesigner(inventory) {
-    // your code here
-  
+  // your code here
+  let inventario = [];
+  let item = {};
+  if (isValidArray(inventory)) {
+
+    for (let elem of inventory) { // [{}, {}]
+      item = {};
+      for (let key in elem) { // Cada elemento del array es un objeto con 2 keys
+        // currentInventory[0].name
+        //console.log("👽 => " + elem[key]);
+
+        if (key === "name" && !(elem[key] in item)) { item[key] = elem[key]; }
+        if (Array.isArray(elem[key])) {
+          let suma = 0;
+          for (let i = 0; i < elem[key].length; i++) {
+            suma += elem[key][i].price;
+          }
+          item["averagePrice"] = suma / elem[key].length;
+        }
+
+
+      }
+      inventario.push(item);
+    }
+    return inventario;
+  }
 }
 
 console.log(renderAverageCostPerDesigner(currentInventory));
